@@ -25,14 +25,18 @@ const readMovies = async () => {
 
 readMovies()
     .then( data => {
-        sliceExample(data)
-        spliceExample(data)
-        shiftExample(data)
-        unshiftExample(data)
-        pushExample(data)
-        findIndexExample(data)
-        findExample(data)
-        filterExample(data)
+        // sliceExample(data)
+        // spliceExample(data)
+        // shiftExample(data)
+        // unshiftExample(data)
+        // pushExample(data)
+        // findIndexExample(data)
+        // findExample(data)
+        // filterExample(data)
+        mapExample(data)
+        sortExample(data)
+        reduceExample(data)
+        spreadArrayFunction(data)
     })
     .catch( err => console.log(err) )
 
@@ -87,4 +91,62 @@ const findExample = array => {
 const filterExample = array => {
     const arrayFiltered = array.filter( movie => movie.genero === "Sci-Fi" )
     console.log("filterExample", arrayFiltered) 
+}
+
+// Map
+const mapExample = array => {
+    const mapArray = array.map(
+        (movie) => ({
+            id: movie.id,
+            title: movie.titulo,
+            year: movie.anio
+        })
+    )
+    console.log(mapArray)
+}
+
+// Sort
+const sortExample = array => {
+    // Caso descendente
+    array.sort(
+        (movieA, movieB) => movieB.anio - movieA.anio
+    )
+    console.log(array)
+}
+
+// Reduce
+const reduceExample = array => {
+    const additionDuration = array.reduce(
+        (acc, movie) => acc + movie.duracion,
+        0 // Valor inicial
+    )
+    console.log("total:", additionDuration)
+}
+
+// Desestructuración
+
+const { anio, titulo,  } = newMovie; 
+console.log("Titulo: ", titulo)
+console.log("Año: ", anio)
+
+// para desesctructurar un array usamos [] - y se debe tener en cuenta la posición
+const arr = [ "Manzana", "Banana", "Pera", "Uva"]
+
+const [ , , fruit ] = arr;
+console.log("Fruta", fruit)
+
+// Operador Spread
+const newObj = {
+    ...newMovie,
+    calificacionIMDB: 9
+}
+
+console.log(newObj)
+
+const spreadArrayFunction = array => {
+    const newArray = [
+        ...array,
+        newObj
+    ]
+    console.log(newArray)
 }
